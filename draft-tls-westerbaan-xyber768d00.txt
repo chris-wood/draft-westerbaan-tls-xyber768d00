@@ -71,7 +71,6 @@ Table of Contents
    6.  References
      6.1.  Normative References
      6.2.  Informative References
-   Acknowledgments
    Author's Address
 
 1.  Introduction
@@ -159,8 +158,6 @@ Table of Contents
               And Supporting Documentation (version 3.02)", 2021,
               <https://pq-crystals.org/kyber/data/kyber-specification-
               round3-20210804.pdf>.
-
-Acknowledgments
 
 Author's Address
 
