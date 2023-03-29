@@ -4,8 +4,8 @@
 
 Network Working Group                                      B. Westerbaan
 Internet-Draft                                                Cloudflare
-Intended status: Informational                             28 March 2023
-Expires: 29 September 2023
+Intended status: Informational                             29 March 2023
+Expires: 30 September 2023
 
 
         X25519Kyber768Draft00 hybrid post-quantum key agreement
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 September 2023.
+   This Internet-Draft will expire on 30 September 2023.
 
 Copyright Notice
 
@@ -79,15 +79,15 @@ Table of Contents
 
    The final draft for Kyber is expected in 2024.  There are already
    early deployments of post-quantum key agreement, with more to come
-   before Kyber is standardised.  For compatibility, this meme specifies
-   a preliminary hybrid post-quantum key agreement.
+   before Kyber is standardised.  To promote interoperability of early
+   implementations, this document specifies a preliminary hybrid post-
+   quantum key agreement.
 
 2.  Construction
 
    We instantiate draft-ietf-tls-hybrid-design-06 with X25519 [rfc8037]
    and Kyber768Draft00 [kyber].  The latter is Kyber as submitted to
-   round 3 of the NIST PQC process [KyberV302].  For motivation of the
-   hybrid design, see [hybrid].
+   round 3 of the NIST PQC process [KyberV302].
 
    For the client's share, the key_exchange value contains the
    concatenation of the client's X25519 ephemeral share and the client's
@@ -99,8 +99,7 @@ Table of Contents
    client's public key.
 
    The shared secret is calculated as the concatenation of the X25519
-   shared secret between both shares and the Kyber768Draft00 shared
-   secret.
+   shared secret and the Kyber768Draft00 shared secret.
 
 3.  Conventions and Definitions
 
@@ -112,12 +111,26 @@ Table of Contents
 
 4.  Security Considerations
 
-   TODO Security
+   This concatenation approach provides a secure key exchange if either
+   component key exchange methods (X25519 or Kyber768Draft00) are secure
+   [HYBRID].
 
 5.  IANA Considerations
 
-   This key agreement is assigned the TLS named group
-   x25519_kyber768_draft00=0xfe31.
+   This document requests/registers TLS Named Group (or Supported
+   Group), according to the procedures in Section 6 of [tlsiana]:
+
+   Value:  0x6399 (please) Description:
+
+      X25519Kyber768Draft00 DTLS-OK:
+
+      Y Recommended:
+
+      N Reference:
+
+      This document Comment:
+
+      Pre-standards version of Kyber768
 
 6.  References
 
@@ -145,11 +158,11 @@ Table of Contents
 
 6.2.  Informative References
 
-   [hybrid]   Stebila, D., Fluhrer, S., and S. Gueron, "Hybrid key
+   [HYBRID]   Stebila, D., Fluhrer, S., and S. Gueron, "Hybrid key
               exchange in TLS 1.3", Work in Progress, Internet-Draft,
-              draft-stebila-tls-hybrid-design-03, 12 February 2020,
-              <https://datatracker.ietf.org/doc/html/draft-stebila-tls-
-              hybrid-design-03>.
+              draft-ietf-tls-hybrid-design-06, 27 February 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
+              hybrid-design-06>.
 
    [KyberV302]
               Avanzi, R., Bos, J., Ducas, L., Kiltz, E., Lepoint, T.,
@@ -158,6 +171,12 @@ Table of Contents
               And Supporting Documentation (version 3.02)", 2021,
               <https://pq-crystals.org/kyber/data/kyber-specification-
               round3-20210804.pdf>.
+
+   [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
+              TLS and DTLS", Work in Progress, Internet-Draft, draft-
+              ietf-tls-rfc8447bis-04, 27 March 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
+              rfc8447bis-04>.
 
 Author's Address
 
